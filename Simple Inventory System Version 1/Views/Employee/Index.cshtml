@@ -1,0 +1,35 @@
+﻿
+
+@model IEnumerable<Simple_Inventory_System.Models.Employee>
+@using Simple_Inventory_System.Models;
+@{
+    ViewBag.Title = "Company Staff";
+}
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+        font-family:Arial;
+    }
+    table {width: 75%;}
+    td {text-align:center;}
+</style>
+
+<div>
+    <h3>Company Staff</h3>
+    <table>
+        <tr><th>Employee Name</th><th>Title</th><th>Phone Number</th><th>Extenstion</th></tr>
+        @foreach (Employee employee in @Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(employee.FirstName +" "+ employee.LastName, "Details", new { id = employee.EmployeeID })</td>
+                <td>@employee.Title</td>
+                <td>@employee.HomePhone</td>
+                <td>@employee.Extension</td>
+            </tr>
+        }
+        </table>
+    <br />
+    @Html.ActionLink("Back to Home Page","Index","Home")
+
+</div>

@@ -1,0 +1,62 @@
+﻿@using Simple_Inventory_System.Models;
+@model Customer
+
+ 
+
+
+@{
+    ViewBag.Title = "Details";
+    DateTime date = new DateTime(1,1,1);
+ }
+
+<h2>Details</h2>
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+        font-family: Arial;
+    }
+
+    table {
+        width: 75%;
+    }
+
+    td {
+        text-align: center;
+    }
+</style>
+
+<div>
+    <h3>Customer Details</h3>
+    <table>
+        <tr><th>Company Name</th><th>Contact</th><th>Title</th><th>Address</th><th>City</th><th>Country</th></tr>
+            <tr>
+                <td>@Model.CompanyName</td>
+                <td>@Model.ContactName</td>
+                <td>@Model.ContactTitle</td>
+                <td>@Model.Address</td>
+                <td>@Model.City</td>
+                <td>@Model.Country</td>
+            </tr>
+    </table>
+    <table>
+        <tr><th>OrderID</th><th>OrderDate</th><th>RequiredDate</th><th>ShippedDate</th><th>ShipName</th><th>ShipAddress</th><th>ShipCity</th><th>ShipRegion</th><th>ShipPostcode </th><th>ShipCountry</th></tr>
+        <br />
+        @if(Model.Orders != null)
+        { 
+            foreach (Order ord in Model.Orders)
+            {
+                <tr><td>@ord.OrderID</td><td>@ord.OrderDate.ToString("MM/dd/yyyy")</td><td>@ord.RequiredDate.ToString("MM/dd/yyyy")</td><td>@if (ord.ShippedDate == date) { }else
+                    { @ord.ShippedDate.Value.ToString("MM/dd/yyyy")}</td>
+        <td>@ord.ShipName</td><td>@ord.ShipAddress</td><td>@ord.ShipCity</td><td>@ord.ShipRegion</td><td>@ord.ShipPostalCode </td><td>@ord.ShipCountry</td></tr>
+            }
+        }
+        else
+        {
+            <tr><td></td><td></td><td></td><th></th><td></td><td></td><td></td><td></td><td></td></tr>
+        }
+    </table>
+    <br />
+    @Html.ActionLink("Back to Customer Index", "Index", "Customer")
+
+</div>

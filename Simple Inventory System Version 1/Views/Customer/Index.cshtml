@@ -1,0 +1,43 @@
+﻿@model  IEnumerable<Simple_Inventory_System.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+        font-family: Arial;
+    }
+
+    table {
+        width: 75%;
+    }
+
+    td {
+        text-align: center;
+    }
+</style>
+
+@using Simple_Inventory_System.Models
+
+<div>
+    <h3>Customer Information</h3>
+    <table>
+        <tr><th>Company Name</th><th>Contact</th><th>Title</th><th>Address</th><th>City</th><th>Country</th></tr>
+        @foreach (Customer customer in @Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(customer.CompanyName, "Details", new { id = customer.CustomerID })</td>
+                <td>@customer.ContactName</td>
+                <td>@customer.ContactTitle</td>
+                <td>@customer.Address</td>
+                <td>@customer.City</td>
+                <td>@customer.Country</td>
+            </tr>
+        }
+    </table>
+    <br />
+    @Html.ActionLink("Back to Home Page", "Index", "Home")
+
+</div>
